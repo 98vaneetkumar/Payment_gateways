@@ -1,0 +1,10 @@
+{
+    "development": {
+      "username": "dbuser",
+      "password": "password",
+      "database": "multilevel_comment",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    }
+  }
+  

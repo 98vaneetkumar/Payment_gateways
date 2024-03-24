@@ -1,0 +1,631 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "API",
+		"description": "Documentation",
+		"version": "1.0"
+	},
+	"produces": ["application/json"],
+	"basePath": "/",
+	"securityDefinitions": {
+		"Bearer": {
+			"type": "apiKey",
+			"name": "authorization",
+			"in": "header"
+		}
+	},
+	"paths": {
+	   "/api/v1/users/register": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-v1-user-signup-post",
+				"tags": ["Application User"],
+				"description": "",
+				"consumes": ["multipart/form-data"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "firstName",
+						"in": "formData",
+						"description": "firstName of user",
+						"required": true,
+						"type": "string",
+						"value": "vaneet kumar"
+					},
+                    {
+						"name": "lastName",
+						"in": "formData",
+						"description": "lastName of user",
+						"required": true,
+						"type": "string",
+						"value": "vaneet kumar"
+					},
+                    {
+						"name": "email",
+						"in": "formData",
+						"description": "email of user",
+						"required": true,
+						"type": "string",
+						"value": "vaneet kumar"
+					},
+					{
+						"name": "countryCode",
+						"in": "formData",
+						"description": "Enter the country code",
+						"required": true,
+						"type": "string",
+						"value": "+91"
+					},
+					{
+						"name":"phone",
+						"in":"formData",
+						"description":"Enter Phone number",
+						"required":true,
+						"type":"string",
+						"value":"8628023157"
+					},
+					{
+						"name":"password",
+						"in":"formData",
+						"description":"Enter password",
+						"required":true,
+						"type":"string",
+						"value":"8628023157"
+					},
+					{
+						"name":"confirmPassword",
+						"in":"formData",
+						"description":"Enter confirmPassword",
+						"required":true,
+						"type":"string",
+						"value":"8628023157"
+					},
+					{
+						"name":"deviceType",
+						"in":"formData",
+						"description": "1 => IOS, 2 => Andriod",
+						"type": "number",
+						"enum": [0, 1],
+						"required": false
+					},
+					{
+						"name": "location",
+						"in": "formData",
+						"description": "Enter your location",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "latitude",
+						"in": "formData",
+						"description": "Enter latitude",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "longitude",
+						"in": "formData",
+						"description": "Enter your longitude",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "deviceToken",
+						"in": "formData",
+						"description": "Device token for PUSH notifications",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/users/login": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "login",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "phoneEmail",
+						"in": "formData",
+						"description": "Enter your phone number with country code or email",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "password",
+						"in": "formData",
+						"description": "Enter your password",
+						"required": true,
+						"type": "string",
+						"value": "123456789"
+					},
+					{
+						"name":"deviceType",
+						"description": "1 => IOS, 2 => Andriod",
+						"type": "number",
+						"enum": [0, 1],
+						"required": false
+					},
+					{
+						"name": "deviceToken",
+						"in": "formData",
+						"description": "Device token for PUSH notifications",
+						"required": true,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "location",
+						"in": "formData",
+						"description": "Enter your location",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "latitude",
+						"in": "formData",
+						"description": "Enter latitude",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "longitude",
+						"in": "formData",
+						"description": "Enter your longitude",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					}
+				],
+				"responses": {}
+			}
+		},
+        "/api/v1/users/socialLogin": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "socialLogin",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "name",
+						"in": "formData",
+						"description": "Enter your name",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "email",
+						"in": "formData",
+						"description": "Enter your email",
+						"required": true,
+						"type": "string",
+						"value": "123456789"
+					},
+                    {
+						"name": "socialId",
+						"in": "formData",
+						"description": "Enter your socialId",
+						"required": true,
+						"type": "string",
+						"value": "123456789"
+					},
+                    {
+						"name": "socialType",
+						"in": "formData",
+						"description": "Enter your socialType",
+						"required": true,
+						"type": "string",
+						"value": "123456789"
+					},
+					{
+						"name":"deviceType",
+						"description": "1 => IOS, 2 => Andriod",
+						"type": "number",
+						"enum": [0, 1],
+						"required": false
+					},
+					{
+						"name": "deviceToken",
+						"in": "formData",
+						"description": "Device token for PUSH notifications",
+						"required": true,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "location",
+						"in": "formData",
+						"description": "Enter your location",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "latitude",
+						"in": "formData",
+						"description": "Enter latitude",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "longitude",
+						"in": "formData",
+						"description": "Enter your longitude",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/users/logOut": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "logOut",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/users/deleteAccount": {
+			"delete": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "delete",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/users/changePassword": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "change Password",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name":"oldPassword",
+						"in":"formData",
+						"description":"Enter oldPassword",
+						"required":true,
+						"type":"string",
+						"value":"8628023157"
+					},
+					{
+						"name":"newPassword",
+						"in":"formData",
+						"description":"Enter newPassword",
+						"required":true,
+						"type":"string",
+						"value":"8628023157"
+					},
+					{
+						"name":"confirmPassword",
+						"in":"formData",
+						"description":"Enter confirmPassword",
+						"required":true,
+						"type":"string",
+						"value":"8628023157"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/users/forgetPassword": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "forgetPassword",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name":"email",
+						"in":"formData",
+						"description":"Enter your email",
+						"required":true,
+						"type":"string",
+						"value":"vaneet1243@gmail.com"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/users/otpVerify": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "otpVerify",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name":"email",
+						"in":"formData",
+						"description":"Enter your email",
+						"required":true,
+						"type":"string",
+						"value":"vaneet3234@gmail.com"
+					},
+					{
+						"name":"otp",
+						"in":"formData",
+						"description":"Enter otp",
+						"required":true,
+						"type":"string",
+						"value":"1111"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/users/resendOtp": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "resendOtp",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name":"email",
+						"in":"formData",
+						"description":"Enter your email",
+						"required":true,
+						"type":"string",
+						"value":"8628023157"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/users/updateProfile": {
+			"put": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "updateProfile",
+				"tags": ["Application User"],
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"description": "",
+				"parameters": [
+					{
+						"name": "firstName",
+						"in": "formData",
+						"description": "firstName of user",
+						"required": true,
+						"type": "string",
+						"value": "vaneet kumar"
+					},
+                    {
+						"name": "lastName",
+						"in": "formData",
+						"description": "lastName of user",
+						"required": true,
+						"type": "string",
+						"value": "vaneet kumar"
+					},
+                    {
+						"name": "email",
+						"in": "formData",
+						"description": "email of user",
+						"required": true,
+						"type": "string",
+						"value": "vaneet kumar"
+					},
+					{
+						"name": "countryCode",
+						"in": "formData",
+						"description": "Enter the country code",
+						"required": true,
+						"type": "string",
+						"value": "+91"
+					},
+					{
+						"name":"phone",
+						"in":"formData",
+						"description":"Enter Phone number",
+						"required":true,
+						"type":"string",
+						"value":"8628023157"
+					},
+					{
+						"name":"password",
+						"in":"formData",
+						"description":"Enter password",
+						"required":true,
+						"type":"string",
+						"value":"8628023157"
+					},
+					{
+						"name":"confirmPassword",
+						"in":"formData",
+						"description":"Enter confirmPassword",
+						"required":true,
+						"type":"string",
+						"value":"8628023157"
+					},
+					{
+						"name":"deviceType",
+						"in":"formData",
+						"description": "1 => IOS, 2 => Andriod",
+						"type": "number",
+						"enum": [0, 1],
+						"required": false
+					},
+					{
+						"name": "location",
+						"in": "formData",
+						"description": "Enter your location",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "latitude",
+						"in": "formData",
+						"description": "Enter latitude",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "longitude",
+						"in": "formData",
+						"description": "Enter your longitude",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "deviceToken",
+						"in": "formData",
+						"description": "Device token for PUSH notifications",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/users/loginUserProfile": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "get-loginUserProfile-list",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/users/viewUserProfile": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "get-viewUserProfile-list",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "formData",
+						"description": "",
+						"type": "number",
+						"required": false,
+						"value":11
+					}
+				],
+				"responses": {}
+			}
+		},
+        "/api/v1/users/notificationManage": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "get-notificationManage-list",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+        "/api/v1/users/notificationListing": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "get-notificationListing-list",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+        "/api/v1/users/deleteNotification": {
+			"delete": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "get-deleteNotification-list",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+                    {
+						"name": "id",
+						"in": "formData",
+						"description": "",
+						"type": "number",
+						"required": false,
+						"value":11
+					}
+				],
+				"responses": {}
+			}
+		}
+	}
+}

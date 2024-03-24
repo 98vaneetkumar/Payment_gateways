@@ -1,0 +1,19 @@
+module.exports=(Sequelize,sequelize,DataTypes)=>{
+    return sequelize.define("posts",{
+        ...require("./core")(Sequelize,DataTypes),
+        post:{
+           type:DataTypes.STRING(255),
+           defaultValue:null
+        },
+        userId:{
+            onDelete:"CASCADE",
+            onUpdate:"CASCADE",
+            references:{
+                key:"id",
+                model:"users"
+            },
+            defaultValue:null,
+            type:Sequelize.UUID
+        },
+    })
+}

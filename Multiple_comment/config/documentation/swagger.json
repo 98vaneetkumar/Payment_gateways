@@ -1,0 +1,303 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "API",
+		"description": "Documentation",
+		"version": "1.0"
+	},
+	"produces": ["application/json"],
+	"basePath": "/",
+	"securityDefinitions": {
+		"Bearer": {
+			"type": "apiKey",
+			"name": "authorization",
+			"in": "header"
+		}
+	},
+	"host": "127.0.0.1:3001",
+	"paths": {
+		"/api/v1/user/register": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-v1-user-signup-post",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "name",
+						"in": "formData",
+						"description": "Name of user",
+						"required": true,
+						"type": "string",
+						"value": "vaneet kumar"
+					},
+					{
+						"name": "email",
+						"in": "formData",
+						"description": "Email address of user",
+						"required": true,
+						"type": "string",
+						"value": "vaneet@gmail.com"
+					},
+					{
+						"name":"password",
+						"in":"formData",
+						"description":"Enter Password of user",
+						"required":true,
+						"type":"string",
+						"value":"123456789"
+					},
+					{
+						"name": "deviceToken",
+						"in": "formData",
+						"description": "Device token for PUSH notifications",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/user/login": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "login",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "email",
+						"in": "formData",
+						"description": "Email address of user",
+						"required": true,
+						"type": "string",
+						"value": "vaneet@gmail.com"
+					},
+					{
+						"name": "password",
+						"in": "formData",
+						"description": "Password for user account as encrypted value in Base64 format",
+						"required": true,
+						"type": "string",
+						"value": "123456789"
+					},
+					{
+						"name": "platformType",
+						"in": "formData",
+						"description": "PlatformType of device",
+						"required": true,
+						"type": "string",
+						"enum": ["IOS", "ANDROID", "WEB"],
+						"value": "IOS"
+					},
+					{
+						"name": "deviceToken",
+						"in": "formData",
+						"description": "Device token for PUSH notifications",
+						"required": true,
+						"type": "string",
+						"value": "abc"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/user/addPosts": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-v1-user-posts-add",
+				"tags": ["Application Post"],
+				"description": "Add Posts",
+				"security": [
+					{
+						"Bearer": []
+					}
+				], 	
+				"parameters": [
+					{
+						"name": "post",
+						"in": "formData",
+						"description": "",
+						"type": "string",
+						"value": "",
+						"required": true
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/user/addComment": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-v1-user-addComment-post",
+				"tags": ["Application Post"],
+				"security": [
+					{
+						"Bearer": []
+					}
+				], 	
+				"description": "",
+				"parameters": [
+					{
+						"name": "comment",
+						"in": "formData",
+						"description": "Add comment",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "postId",
+						"in": "formData",
+						"description": "Enter post Id",
+						"required": true,
+						"type": "string",
+						"value": "d6b4f38d-eb18-453d-b8a1-e993845b0c6f"
+					},
+					{
+						"name":"commentId",
+						"in":"formData",
+						"description":"Enter comment Id if do comment on comment",
+						"required":false,
+						"type":"string",
+						"value":""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/user/findOuterComments/{postId}": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-v1-user-findOuterComments-post",
+				"tags": ["Application Post"],
+				"security": [
+					{
+						"Bearer": []
+					}
+				], 	
+				"description": "",
+				"parameters": [
+					{
+						"name": "postId",
+						"in": "path",
+						"description": "Enter post Id",
+						"required": true,
+						"type": "string",
+						"value": "d6b4f38d-eb18-453d-b8a1-e993845b0c6f"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/user/findAllInnerComments/{commentId}": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-v1-user-findInnerComments-get",
+				"tags": ["Application Post"],
+				"security": [
+					{
+						"Bearer": []
+					}
+				], 	
+				"description": "",
+				"parameters": [
+					{
+						"name": "commentId",
+						"in": "path",
+						"description": "Enter comment Id",
+						"required": true,
+						"type": "string",
+						"value": "66ce1389-585f-42fc-8073-8b5c863591ec"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/user/findOneByOneInnerComments/{commentId}": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-v1-user-findOneByOneInnerComments-get",
+				"tags": ["Application Post"],
+				"security": [
+					{
+						"Bearer": []
+					}
+				], 
+				"description": "",
+				"parameters": [
+					{
+						"name": "commentId",
+						"in": "path",
+						"description": "Enter comment Id",
+						"required": true,
+						"type": "string",
+						"value": "e3c55e42-f035-4d75-aaf9-038f5f2a13c7"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/user/multipleFileUpload": {
+			"post": {
+			  "x-swagger-router-controller": "middleware-name1",
+			  "operationId": "api-v1-user-multipleFileUpload-post",
+			  "tags": ["Application MultipleFile Upload"],
+			  "description": "Upload multiple files",
+			  "consumes": ["multipart/form-data"],
+			  "produces": ["application/json"],
+			  "parameters": [
+				{
+				  "name": "images",
+				  "in": "formData",
+				  "description": "Select multiple images to upload",
+				  "required": true,
+				  "type": "array",
+				  "items": {
+					"type": "file"
+				  }
+				},
+				{
+					"name": "videos",
+					"in": "formData",
+					"description": "Select multiple video to upload",
+					"required": false,
+					"type": "array",
+					"items": {
+					    "type": "file",
+                        "format": "binary"
+					}
+				}
+			  ],
+			  "responses": {
+				"200": {
+				  "description": "Files uploaded successfully",
+				  "schema": {
+					"$ref": "#/definitions/UploadResponse"
+				  }
+				}
+			  }
+			}
+		},
+		"/api/v1/user/deleteImage": {
+			"delete": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-v1-user-deleteImage-post",
+				"tags": ["Application MultipleFile Upload"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "imageName",
+						"in": "formData",
+						"description": "Add image name",
+						"required": true,
+						"type": "string",
+						"value": "360_F_363459597_I8q3zqhuKd9HyfWm3XWmP4SSD2RFfMIo.jpg"
+					}
+				],
+				"responses": {}
+			}
+		}	  
+	}
+}
